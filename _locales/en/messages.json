@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "SmartFill",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Automatically fill forms with custom data and random data and suports tempmail.",
+    "description": "Description of the extension"
+  }
+}

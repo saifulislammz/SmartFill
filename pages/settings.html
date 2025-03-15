@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SmartFill Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    body {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: 'Inter', sans-serif;
+      background: #1E1B2F;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #1E1B2F;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: #1E1B2F;
+      border-bottom: 1px solid #916DFF;
+      margin: -20px -20px 20px -20px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .header h1 {
+      color: #916DFF;
+      font-size: 24px;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .setting-group {
+      background: #2A2640;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #7C4DFF;
+    }
+
+    .setting-group h2 {
+      color: #916DFF;
+      font-size: 18px;
+      margin: 0 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #7C4DFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .setting-group h2 svg {
+      width: 20px;
+      height: 20px;
+      stroke: #916DFF;
+    }
+
+    .setting-item {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      background: #1E1B2F;
+      border: 1px solid #7C4DFF;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: all 0.2s;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #916DFF;
+      box-shadow: 0 0 0 3px rgba(145, 109, 255, 0.2);
+    }
+
+    .button-container {
+      margin-top: 30px;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    button {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #916DFF 0%, #7C4DFF 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    button:hover {
+      box-shadow: 0 4px 12px rgba(124, 77, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    button svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .reset-button {
+      background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 100%);
+    }
+
+    .success {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #10B981;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      display: none;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        SmartFill Settings
+      </h1>
+    </div>
+
+    <div class="settings-grid">
+      <div class="setting-group">
+        <h2>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Personal Information
+        </h2>
+        <div class="setting-item">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" placeholder="Enter your first name">
+        </div>
+        <div class="setting-item">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" placeholder="Enter your last name">
+        </div>
+        <div class="setting-item">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" id="phoneNumber" placeholder="Enter your phone number">
+        </div>
+        <div class="setting-item">
+          <label for="email">Email</label>
+          <input type="text" id="email" placeholder="Enter your email">
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <h2>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          Address Information
+        </h2>
+        <div class="setting-item">
+          <label for="streetAddress">Street Address</label>
+          <input type="text" id="streetAddress" placeholder="Enter your street address">
+        </div>
+        <div class="setting-item">
+          <label for="city">City</label>
+          <input type="text" id="city" placeholder="Enter your city">
+        </div>
+        <div class="setting-item">
+          <label for="state">State</label>
+          <input type="text" id="state" placeholder="Enter your state">
+        </div>
+        <div class="setting-item">
+          <label for="zipCode">ZIP Code</label>
+          <input type="text" id="zipCode" placeholder="Enter your ZIP code">
+        </div>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button id="saveButton">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+          <polyline points="17 21 17 13 7 13 7 21"></polyline>
+          <polyline points="7 3 7 8 15 8"></polyline>
+        </svg>
+        Save Settings
+      </button>
+      <button id="resetButton" class="reset-button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12a9 9 0 0 1-9 9"></path>
+          <path d="M3 12a9 9 0 0 1 9-9"></path>
+          <path d="M21 12H3"></path>
+          <path d="M12 21V3"></path>
+        </svg>
+        Reset Settings
+      </button>
+    </div>
+  </div>
+
+  <div id="saveSuccess" class="success">Settings saved successfully!</div>
+
+  <script src="../js/settings.js"></script>
+</body>
+</html>
